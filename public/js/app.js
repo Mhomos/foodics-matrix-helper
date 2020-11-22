@@ -1984,22 +1984,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       matrices_number: 0,
-      matrices: []
+      matrices: [],
+      result: []
     };
   },
   methods: {
     calculate: function calculate() {
       var _this = this;
 
-      console.log(this.getMappedMatrices());
       axios.post('/api/matrix/calculate', {
         matrices: this.getMappedMatrices(),
         operation: 'multiply'
-      }).then(function (response) {})["catch"](function (error) {
+      }).then(function (response) {
+        _this.result = response.data;
+      })["catch"](function (error) {
         _this.has_error = true;
       });
     },
@@ -2013,6 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateMatrix: function updateMatrix(index) {
+      this.resetResult();
       var matrix = this.matrices[index];
       var values = [];
 
@@ -2028,11 +2056,14 @@ __webpack_require__.r(__webpack_exports__);
 
       matrix.values = values;
       this.matrices[index] = matrix;
-      console.log(this.matrices[index]);
+    },
+    resetResult: function resetResult() {
+      this.result = [];
     }
   },
   watch: {
     matrices_number: function matrices_number(val) {
+      this.resetResult();
       var matrices = [];
 
       for (var i = 0; i < this.matrices_number; i++) {
@@ -2874,6 +2905,57 @@ var render = function() {
               }),
               0
             ),
+            _vm._v(" "),
+            this.result
+              ? _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Result Matrix")]),
+                      _vm._v(" "),
+                      _c(
+                        "table",
+                        { attrs: { border: "1", cellpadding: "5" } },
+                        [
+                          _c(
+                            "tr",
+                            [
+                              _c("th", [_vm._v("#")]),
+                              _vm._v(" "),
+                              _vm._l(this.result[1], function(columns, column) {
+                                return _c("th", [
+                                  _c("span", [_vm._v(_vm._s(column))])
+                                ])
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm._l(this.result, function(rows, row) {
+                            return _c(
+                              "tr",
+                              [
+                                _c("td", [_vm._v(_vm._s(row))]),
+                                _vm._v(" "),
+                                _vm._l(rows, function(column) {
+                                  return _c("td", [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: { type: "number", readonly: "" },
+                                      domProps: { value: column }
+                                    })
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "button",

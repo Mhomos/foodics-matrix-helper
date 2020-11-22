@@ -41,6 +41,31 @@
 
                         </div>
                     </div>
+                    <div class="row" v-if="this.result">
+                        <div class="col-md-12" >
+                            <div class="form-group">
+                                <label>Result Matrix</label>
+                                <table border="1" cellpadding="5">
+                                    <tr>
+                                        <th>#</th>
+                                        <th v-for="(columns , column) in this.result[1]" >
+                                            <span>{{column}}</span>
+                                        </th>
+                                    </tr>
+                                    <tr v-for="(rows , row) in this.result">
+                                        <td>{{row}}</td>
+                                        <td v-for="column in rows">
+                                            <input type="number" :value="column"
+                                                   class="form-control"
+                                                    readonly>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Calculate</button>
                 </form>
             </div>
@@ -52,19 +77,19 @@ export default {
     data() {
         return {
             matrices_number: 0,
-            matrices: []
+            matrices: [],
+            result: []
         }
     },
     methods: {
         calculate: function () {
-            console.log(this.getMappedMatrices());
             axios
                 .post('/api/matrix/calculate', {
                     matrices: this.getMappedMatrices(),
                     operation: 'multiply',
                 })
                 .then(response => {
-
+                    this.result = response.data;
                 })
                 .catch(error => {
                     this.has_error = true;
@@ -74,6 +99,8 @@ export default {
             return this.matrices.map(item => item.values.map(rows => rows.map(number => parseInt(number))));
         },
         updateMatrix: function (index) {
+            this.resetResult();
+
             let matrix = this.matrices[index];
             let values = [];
 
@@ -90,11 +117,14 @@ export default {
             matrix.values = values;
 
             this.matrices[index] = matrix;
-            console.log(this.matrices[index]);
         },
+        resetResult() {
+            this.result = [];
+        }
     },
     watch: {
         matrices_number: function (val) {
+            this.resetResult();
             let matrices = [];
             for (let i = 0; i < this.matrices_number; i++) {
                 matrices.push({
