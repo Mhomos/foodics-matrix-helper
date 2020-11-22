@@ -48,7 +48,7 @@ export default {
                     password_confirmation: this.password_confirmation,
                 })
                 .then(response => {
-                    this.redirect(response);
+                    this.$router.push({ name: 'login' });
                 })
                 .catch(error => {
                     this.has_error = true;

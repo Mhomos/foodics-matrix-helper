@@ -1915,12 +1915,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {//
+    return {
+      has_error: true
     };
   },
-  components: {//
+  methods: {
+    isLogged: function isLogged() {
+      this.isLogged = !localStorage.getItem('jwt');
+    },
+    logout: function logout() {
+      var _this = this;
+
+      axios.get('/api/auth/logout').then(function (response) {
+        localStorage.setItem('jwt', null);
+
+        _this.$router.push({
+          name: 'login'
+        });
+      })["catch"](function (error) {
+        _this.has_error = true;
+      });
+    }
   }
 });
 
@@ -2206,7 +2243,9 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password,
         password_confirmation: this.password_confirmation
       }).then(function (response) {
-        _this.redirect(response);
+        _this.$router.push({
+          name: 'login'
+        });
       })["catch"](function (error) {
         _this.has_error = true;
       });
@@ -2701,10 +2740,114 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "main" } }, [
-    _c("div", { attrs: { id: "content" } }, [_c("router-view")], 1)
+    _c(
+      "div",
+      { attrs: { id: "content" } },
+      [
+        _c(
+          "nav",
+          { staticClass: "navbar navbar-expand-lg navbar-light bg-light mb-4" },
+          [
+            _c(
+              "a",
+              { staticClass: "navbar-brand", attrs: { href: "/dashboard" } },
+              [_vm._v("Matrix Helper")]
+            ),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse navbar-collapse",
+                attrs: { id: "navbarSupportedContent" }
+              },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "navbar-nav mr-auto " },
+                  [
+                    _vm.isLogged
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: "/dashboard" }
+                          },
+                          [_vm._v("Home")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.isLogged
+                      ? _c(
+                          "router-link",
+                          { staticClass: "nav-link", attrs: { to: "/login" } },
+                          [_vm._v("Login")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.isLogged
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: "/register" }
+                          },
+                          [_vm._v("Register")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLogged
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.logout($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Logout")]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("router-view")
+      ],
+      1
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarSupportedContent",
+          "aria-controls": "navbarSupportedContent",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  }
+]
 render._withStripped = true
 
 
