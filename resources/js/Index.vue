@@ -1,12 +1,7 @@
 <template>
     <div id="main">
-        <header id="header">
-            <h1>
-                Laravel Vue SPA
-            </h1>
-        </header>
         <div id="content">
-            Bienvenue !
+            <router-view></router-view>
         </div>
     </div>
 </template>
