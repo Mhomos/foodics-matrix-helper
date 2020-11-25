@@ -26,13 +26,13 @@ Route::group([
     ], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
-
     });
 });
 
 // Matrix Helpers
 Route::group([
-    'prefix' => 'matrix'
+    'prefix' => 'matrix',
+    'middleware' => 'auth:api'
 ], function () {
     Route::post('calculate', 'MatrixController@calculate')->name('matrix.calculate');
 });
