@@ -95,14 +95,11 @@ class MatrixCalculatorService
      */
     private function formatResult()
     {
-        $matrixLength = count($this->result[0]);
-
-        $columns = $this->createColumnsByMatrixLength($matrixLength);
-
         $result = [];
         for ($i = 0; $i < count($this->result); $i++) {
             for ($j = 0; $j < count($this->result[$i]); $j++) {
-                $result[$i + 1][$columns[$j]] = $this->result[$i][$j];
+                $columns = $this->createColumnsByMatrixLength($this->result[$i][$j]);
+                $result[$i + 1][$columns[$j]] = end($columns);
             }
         }
 

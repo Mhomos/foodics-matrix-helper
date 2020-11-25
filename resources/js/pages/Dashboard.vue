@@ -8,56 +8,52 @@
                         <label for="matrices"># Of Matrices</label>
                         <input type="number" id="matrices" class="form-control" v-model="matrices_number" required>
                     </div>
-                    <div class="form-group" v-for="(matrix , index) in matrices">
-                        <label>Matrix # {{ index + 1 }}</label>
-                        <div class="row">
-                            <div class="col">
-                                <label>Rows</label>
-                                <input type="number" id="rows" v-model.number="matrix.rows" class="form-control"
-                                       required @change="updateMatrix(index)">
-                            </div>
-                            <div class="col">
-                                <label>Columns</label>
-                                <input type="number" id="columns" v-model.number="matrix.columns" class="form-control"
-                                       @change="updateMatrix(index)"
-                                       required>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-6" v-for="(matrix , index) in matrices">
                             <div class="form-group">
-                                <label>Matrix # {{ index + 1 }}</label>
-                                <table>
-                                    <tr v-for="(rows , row) in matrix.rows">
-                                        <td v-for="(columns , column) in matrix.columns">
-                                            <input type="number" v-model="matrix.values[row][column]" v-if="matrix"
-                                                   class="form-control"
-                                                   required>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <h3>Matrix # {{ index + 1 }}</h3>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <label>Rows</label>
+                                        <input type="number" id="rows" v-model.number="matrix.rows" class="form-control"
+                                               required @change="updateMatrix(index)">
+                                    </div>
+                                    <div class="col">
+                                        <label>Columns</label>
+                                        <input type="number" id="columns" v-model.number="matrix.columns"
+                                               class="form-control"
+                                               @change="updateMatrix(index)"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <table>
+                                            <tr v-for="(rows , row) in matrix.rows">
+                                                <td v-for="(columns , column) in matrix.columns">
+                                                    <input type="number" v-model="matrix.values[row][column]"
+                                                           v-if="matrix"
+                                                           class="form-control"
+                                                           required>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="row" v-if="this.result">
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Result Matrix</label>
                                 <table border="1" cellpadding="5">
-                                    <tr>
-                                        <th>#</th>
-                                        <th v-for="(columns , column) in this.result[1]" >
-                                            <span>{{column}}</span>
-                                        </th>
-                                    </tr>
                                     <tr v-for="(rows , row) in this.result">
-                                        <td>{{row}}</td>
                                         <td v-for="column in rows">
-                                            <input type="number" :value="column"
+                                            <input type="text" :value="column"
                                                    class="form-control"
-                                                    readonly>
+                                                   readonly>
                                         </td>
                                     </tr>
                                 </table>

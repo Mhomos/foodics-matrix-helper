@@ -2042,10 +2042,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2914,135 +2910,142 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _vm._l(_vm.matrices, function(matrix, index) {
-              return _c("div", { staticClass: "form-group" }, [
-                _c("label", [_vm._v("Matrix # " + _vm._s(index + 1))]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c("label", [_vm._v("Rows")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model.number",
-                          value: matrix.rows,
-                          expression: "matrix.rows",
-                          modifiers: { number: true }
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "number", id: "rows", required: "" },
-                      domProps: { value: matrix.rows },
-                      on: {
-                        change: function($event) {
-                          return _vm.updateMatrix(index)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(matrix, "rows", _vm._n($event.target.value))
-                        },
-                        blur: function($event) {
-                          return _vm.$forceUpdate()
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c("label", [_vm._v("Columns")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model.number",
-                          value: matrix.columns,
-                          expression: "matrix.columns",
-                          modifiers: { number: true }
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "number", id: "columns", required: "" },
-                      domProps: { value: matrix.columns },
-                      on: {
-                        change: function($event) {
-                          return _vm.updateMatrix(index)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            matrix,
-                            "columns",
-                            _vm._n($event.target.value)
-                          )
-                        },
-                        blur: function($event) {
-                          return _vm.$forceUpdate()
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ])
-            }),
-            _vm._v(" "),
             _c(
               "div",
               { staticClass: "row" },
               _vm._l(_vm.matrices, function(matrix, index) {
                 return _c("div", { staticClass: "col-md-6" }, [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Matrix # " + _vm._s(index + 1))]),
+                    _c("h3", [_vm._v("Matrix # " + _vm._s(index + 1))]),
                     _vm._v(" "),
-                    _c(
-                      "table",
-                      _vm._l(matrix.rows, function(rows, row) {
-                        return _c(
-                          "tr",
-                          _vm._l(matrix.columns, function(columns, column) {
-                            return _c("td", [
-                              matrix
-                                ? _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: matrix.values[row][column],
-                                        expression: "matrix.values[row][column]"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: { type: "number", required: "" },
-                                    domProps: {
-                                      value: matrix.values[row][column]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
+                    _c("div", { staticClass: "row mb-2" }, [
+                      _c("div", { staticClass: "col" }, [
+                        _c("label", [_vm._v("Rows")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: matrix.rows,
+                              expression: "matrix.rows",
+                              modifiers: { number: true }
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", id: "rows", required: "" },
+                          domProps: { value: matrix.rows },
+                          on: {
+                            change: function($event) {
+                              return _vm.updateMatrix(index)
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                matrix,
+                                "rows",
+                                _vm._n($event.target.value)
+                              )
+                            },
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        _c("label", [_vm._v("Columns")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: matrix.columns,
+                              expression: "matrix.columns",
+                              modifiers: { number: true }
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "number",
+                            id: "columns",
+                            required: ""
+                          },
+                          domProps: { value: matrix.columns },
+                          on: {
+                            change: function($event) {
+                              return _vm.updateMatrix(index)
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                matrix,
+                                "columns",
+                                _vm._n($event.target.value)
+                              )
+                            },
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "table",
+                          _vm._l(matrix.rows, function(rows, row) {
+                            return _c(
+                              "tr",
+                              _vm._l(matrix.columns, function(columns, column) {
+                                return _c("td", [
+                                  matrix
+                                    ? _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: matrix.values[row][column],
+                                            expression:
+                                              "matrix.values[row][column]"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "number", required: "" },
+                                        domProps: {
+                                          value: matrix.values[row][column]
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              matrix.values[row],
+                                              column,
+                                              $event.target.value
+                                            )
+                                          }
                                         }
-                                        _vm.$set(
-                                          matrix.values[row],
-                                          column,
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                : _vm._e()
-                            ])
+                                      })
+                                    : _vm._e()
+                                ])
+                              }),
+                              0
+                            )
                           }),
                           0
                         )
-                      }),
-                      0
-                    )
+                      ])
+                    ])
                   ])
                 ])
               }),
@@ -3058,42 +3061,22 @@ var render = function() {
                       _c(
                         "table",
                         { attrs: { border: "1", cellpadding: "5" } },
-                        [
-                          _c(
+                        _vm._l(this.result, function(rows, row) {
+                          return _c(
                             "tr",
-                            [
-                              _c("th", [_vm._v("#")]),
-                              _vm._v(" "),
-                              _vm._l(this.result[1], function(columns, column) {
-                                return _c("th", [
-                                  _c("span", [_vm._v(_vm._s(column))])
-                                ])
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm._l(this.result, function(rows, row) {
-                            return _c(
-                              "tr",
-                              [
-                                _c("td", [_vm._v(_vm._s(row))]),
-                                _vm._v(" "),
-                                _vm._l(rows, function(column) {
-                                  return _c("td", [
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: { type: "number", readonly: "" },
-                                      domProps: { value: column }
-                                    })
-                                  ])
+                            _vm._l(rows, function(column) {
+                              return _c("td", [
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", readonly: "" },
+                                  domProps: { value: column }
                                 })
-                              ],
-                              2
-                            )
-                          })
-                        ],
-                        2
+                              ])
+                            }),
+                            0
+                          )
+                        }),
+                        0
                       )
                     ])
                   ])
@@ -3105,8 +3088,7 @@ var render = function() {
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Calculate")]
             )
-          ],
-          2
+          ]
         )
       ])
     ])

@@ -26,10 +26,7 @@ class MatrixController extends Controller
      */
     public function calculate(Request $request)
     {
-        $result = $this->matrixService
-            ->validateRequest()
-            ->initOperation()
-            ->getResult();
+        $result = $this->matrixService->validateRequest()->initOperation()->getResult();
 
         return response()->json($result);
     }
